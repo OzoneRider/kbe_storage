@@ -1,6 +1,6 @@
 package com.kbe.storage.services;
 
-import com.kbe.storage.models.aplicationAPI.Product;
+import com.kbe.storage.models.entities.Product;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.ParseBigDecimal;
 import org.supercsv.cellprocessor.ParseInt;
@@ -12,7 +12,6 @@ import org.supercsv.prefs.CsvPreference;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.kbe.storage.models.aplicationAPI;
+package com.kbe.storage.models.entities;
 
 import lombok.*;
 
