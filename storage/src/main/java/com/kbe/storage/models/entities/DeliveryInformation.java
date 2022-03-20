@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeliveryInformationEntity {
+public class DeliveryInformation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.kbe.storage.services;
 
+import com.kbe.storage.models.entities.DeliveryInformation;
 import com.kbe.storage.repositories.DeliveryInformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,5 +10,13 @@ public class DeliveryInformationService {
 
     @Autowired
     DeliveryInformationRepository deliveryInformationRepository;
+
+    public DeliveryInformation saveDeliveryInformation(DeliveryInformation deliveryInformation){
+        return deliveryInformationRepository.save(deliveryInformation);
+    }
+
+    public  DeliveryInformation findDeliveryInformationById(int id){
+        return deliveryInformationRepository.findByProductId(id);
+    }
 
 }

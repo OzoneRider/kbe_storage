@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeliveryInformation {
+public class DeliveryInfoModel {
 
     @Min(0)
     private int productId;
