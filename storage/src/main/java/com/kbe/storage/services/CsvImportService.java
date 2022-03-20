@@ -1,6 +1,8 @@
 package com.kbe.storage.services;
 
 import com.kbe.storage.models.entities.Product;
+import com.kbe.storage.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.ParseBigDecimal;
 import org.supercsv.cellprocessor.ParseInt;
@@ -18,6 +20,9 @@ import java.util.List;
 @Service
 public class CsvImportService {
 
+    @Autowired
+    private ProductRepository productRepository;
+
     private final String CSV_FILENAME = "products.csv";
 
     public List<Product> readCsvFromFolder() {
@@ -34,7 +39,7 @@ public class CsvImportService {
             while((product = beanReader.read(Product.class, headers, processors)) != null){
                 productList.add(product);
             }
-            return productList;
+            return productRepository.saveAll(productList);
         }catch (Exception e){
             e.getStackTrace();
         }
