@@ -40,7 +40,7 @@ public class StorageController {
 
     @PostMapping("DeliveryInformation")
     public DeliveryInformation postDeliveryInformation(@Valid @RequestBody DeliveryInfoModel info){
-        return deliveryInformationService.saveDeliveryInformation(info);
+        return deliveryInformationService.saveDeliveryInformation(deliveryInformationService.convertModelToEntity(info));
     }
 
     @PutMapping("DeliveryInformation/{id}")
