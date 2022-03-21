@@ -19,4 +19,11 @@ public class DeliveryInformationService {
         return deliveryInformationRepository.findByProductId(id);
     }
 
+    public DeliveryInformation updateDeliveryInformation(int id, DeliveryInformation deliveryInformation){
+        DeliveryInformation info = deliveryInformationRepository.findByProductId(id);
+        info.setAmount(deliveryInformation.getAmount());
+        info.setDeliveryTimeDays(deliveryInformation.getDeliveryTimeDays());
+        return deliveryInformationRepository.save(info);
+    }
+
 }
