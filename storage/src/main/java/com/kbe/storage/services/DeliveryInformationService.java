@@ -1,5 +1,6 @@
 package com.kbe.storage.services;
 
+import com.kbe.storage.models.aplicationAPI.DeliveryInfoModel;
 import com.kbe.storage.models.entities.DeliveryInformation;
 import com.kbe.storage.repositories.DeliveryInformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class DeliveryInformationService {
         info.setAmount(deliveryInformation.getAmount());
         info.setDeliveryTimeDays(deliveryInformation.getDeliveryTimeDays());
         return deliveryInformationRepository.save(info);
+    }
+
+    public DeliveryInformation convertModelToEntity(DeliveryInfoModel infoModel){
+        return new DeliveryInformation(infoModel.getProductId(), infoModel.getDeliveryTimeDays(), infoModel.getAmount(),
+                infoModel.getProductLocation().getCountry(), infoModel.getProductLocation().getCity(),
+                infoModel.getProductLocation().getStreet(), infoModel.getProductLocation().getHomeNr(),
+                infoModel.getProductLocation().getPostalCode());
     }
 
 }
