@@ -19,7 +19,7 @@ public class StorageController {
     @Autowired
     CsvImportService csvImportService;
     @Autowired
-    DeliveryInformationService deliveryInformationService;
+    DeliveryInformationService infoService;
     @Autowired
     ProductService productService;
 
@@ -34,19 +34,23 @@ public class StorageController {
     }
 
     @GetMapping("DeliveryInformation/{id}")
-    public DeliveryInformation getDeliveryInformation(@PathVariable("id") Integer id){
-        return deliveryInformationService.findDeliveryInformationById(id);
+    public DeliveryInfoModel getDeliveryInformation(@PathVariable("id") Integer id){
+        return infoService.convertEntityToModel(
+                infoService.findDeliveryInformationByProductId(id));
     }
 
     @PostMapping("DeliveryInformation")
-    public DeliveryInformation postDeliveryInformation(@Valid @RequestBody DeliveryInfoModel info){
-        return deliveryInformationService.saveDeliveryInformation(deliveryInformationService.convertModelToEntity(info));
+    public DeliveryInfoModel postDeliveryInformation(@Valid @RequestBody DeliveryInfoModel info){
+        return infoService.convertEntityToModel(
+                infoService.saveDeliveryInformation(
+                infoService.convertModelToEntity(info)));
     }
 
     @PutMapping("DeliveryInformation/{id}")
-    public DeliveryInformation updateDeliveryInformation(@Valid @RequestBody DeliveryInformation deliveryInformation,
+    public DeliveryInfoModel updateDeliveryInformation(@Valid @RequestBody DeliveryInformation deliveryInformation,
                                                          @PathVariable("id") Integer id){
-        return deliveryInformationService.updateDeliveryInformation(id, deliveryInformation);
+        return infoService.convertEntityToModel(
+                infoService.updateDeliveryInformation(id, deliveryInformation));
     }
 
 }

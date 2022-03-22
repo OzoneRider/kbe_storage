@@ -18,13 +18,16 @@ public class DeliveryInfoModel {
 
     @Min(0)
     private int productId;
-    @NotNull
-    private Location productLocation;
+
     @Min(1)
     @Max(100)
     private int deliveryTimeDays;
+
     @Min(1)
-    @Max(3)
+    @Max(9999)
     private int amount;
+
+    @NotNull
+    private Location productLocation;
 
 }

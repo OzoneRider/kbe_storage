@@ -12,9 +12,6 @@ import javax.persistence.*;
 public class DeliveryInformation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
     @Column(name = "PRODUCT_ID")
     private int productId;
     @Column(name = "DELIVERY_TIME")
@@ -44,10 +41,6 @@ public class DeliveryInformation {
         this.street = street;
         this.homeNr = homeNr;
         this.postalCode = postalCode;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public int getProductId() {
