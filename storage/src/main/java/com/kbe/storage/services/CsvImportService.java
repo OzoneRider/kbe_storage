@@ -2,6 +2,7 @@ package com.kbe.storage.services;
 
 import com.kbe.storage.models.entities.Product;
 import com.kbe.storage.repositories.ProductRepository;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.ParseBigDecimal;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@CommonsLog
 public class CsvImportService {
 
     @Autowired
@@ -41,7 +43,7 @@ public class CsvImportService {
             }
             return productRepository.saveAll(productList);
         }catch (Exception e){
-            e.getStackTrace();
+            log.error(e.getMessage());
         }
         return null;
     }

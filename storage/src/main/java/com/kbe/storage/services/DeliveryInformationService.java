@@ -20,12 +20,12 @@ public class DeliveryInformationService {
 
     public  DeliveryInformation findDeliveryInformationByProductId(int id){
         return deliveryInformationRepository.findById(id)
-                .orElseThrow(() -> new DataNotFoundException());
+                .orElseThrow(() -> new DataNotFoundException(id));
     }
 
     public DeliveryInformation updateDeliveryInformation(int id, DeliveryInformation info){
         DeliveryInformation newInfo = deliveryInformationRepository.findById(id)
-                .orElseThrow(() -> new DataNotFoundException());
+                .orElseThrow(() -> new DataNotFoundException(id));
         info.setAmount(info.getAmount());
         info.setDeliveryTimeDays(info.getDeliveryTimeDays());
 

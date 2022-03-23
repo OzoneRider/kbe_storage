@@ -33,20 +33,20 @@ public class StorageController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("DeliveryInformation/{id}")
+    @GetMapping("delivery-information/{id}")
     public DeliveryInfoModel getDeliveryInformation(@PathVariable("id") Integer id){
         return infoService.convertEntityToModel(
                 infoService.findDeliveryInformationByProductId(id));
     }
 
-    @PostMapping("DeliveryInformation")
+    @PostMapping("delivery-information")
     public DeliveryInfoModel postDeliveryInformation(@Valid @RequestBody DeliveryInfoModel info){
         return infoService.convertEntityToModel(
                 infoService.saveDeliveryInformation(
                 infoService.convertModelToEntity(info)));
     }
 
-    @PutMapping("DeliveryInformation/{id}")
+    @PutMapping("delivery-information/{id}")
     public DeliveryInfoModel updateDeliveryInformation(@Valid @RequestBody DeliveryInformation deliveryInformation,
                                                          @PathVariable("id") Integer id){
         return infoService.convertEntityToModel(
