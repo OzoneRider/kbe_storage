@@ -7,6 +7,8 @@ import com.kbe.storage.services.CsvImportService;
 import com.kbe.storage.services.DeliveryInformationService;
 import com.kbe.storage.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,13 +26,13 @@ public class StorageController {
     ProductService productService;
 
     @GetMapping("products/import")
-    public List<Product> importProducts(){
+    public ResponseEntity<List<Product>> importProducts(){
             return csvImportService.readCsvFromFolder();
     }
 
     @GetMapping("products")
-    public List<Product> getProducts(){
-        return productService.getAllProducts();
+    public ResponseEntity<List<Product>> getProducts(){
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
     @GetMapping("delivery-information/{id}")

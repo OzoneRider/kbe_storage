@@ -33,6 +33,17 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NoProductDataException.class)
+    public ResponseEntity<Object> handleNoProductDataException(NoProductDataException e, WebRequest webRequest){
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", "No products found");
+        log.error(e.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers,
                                                                   HttpStatus status, WebRequest webRequest){

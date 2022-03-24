@@ -4,6 +4,8 @@ import com.kbe.storage.models.entities.Product;
 import com.kbe.storage.repositories.ProductRepository;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.ParseBigDecimal;
 import org.supercsv.cellprocessor.ParseInt;
@@ -27,7 +29,7 @@ public class CsvImportService {
 
     private final String CSV_FILENAME = "products.csv";
 
-    public List<Product> readCsvFromFolder() {
+    public ResponseEntity<List<Product>> readCsvFromFolder() {
         String path = System.getProperty("java.io.tmpdir");
         File file = new File(path, CSV_FILENAME);
 
@@ -41,11 +43,11 @@ public class CsvImportService {
             while((product = beanReader.read(Product.class, headers, processors)) != null){
                 productList.add(product);
             }
-            return productRepository.saveAll(productList);
+            return new ResponseEntity<>(productRepository.saveAll(productList), HttpStatus.OK);
         }catch (Exception e){
             log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return null;
     }
 
     private CellProcessor[] getProcessors(){
