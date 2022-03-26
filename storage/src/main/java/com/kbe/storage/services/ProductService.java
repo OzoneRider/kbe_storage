@@ -4,7 +4,6 @@ import com.kbe.storage.exceptions.DataNotFoundException;
 import com.kbe.storage.exceptions.NoProductDataException;
 import com.kbe.storage.models.entities.Product;
 import com.kbe.storage.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<Product> getAllProducts() throws NoProductDataException{
         List<Product> products = productRepository.findAll();

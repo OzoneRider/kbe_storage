@@ -17,14 +17,10 @@ import java.util.List;
 @RequestMapping("/csv/")
 public class ProductController {
 
-    @Autowired
-    CsvImportService csvImportService;
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @GetMapping("products/import")
-    public ResponseEntity<List<Product>> importProducts(){
-        return csvImportService.readCsvFromFolder();
+    public ProductController(ProductService productService){
+        this.productService = productService;
     }
 
     @GetMapping("products")
