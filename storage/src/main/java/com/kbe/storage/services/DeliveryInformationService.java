@@ -5,16 +5,14 @@ import com.kbe.storage.models.aplicationAPI.DeliveryInfoModel;
 import com.kbe.storage.models.aplicationAPI.Location;
 import com.kbe.storage.models.entities.DeliveryInformation;
 import com.kbe.storage.repositories.DeliveryInformationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class DeliveryInformationService {
 
     private final DeliveryInformationRepository deliveryInformationRepository;
-
-    public DeliveryInformationService(DeliveryInformationRepository deliveryInformationRepository) {
-        this.deliveryInformationRepository = deliveryInformationRepository;
-    }
 
     public  DeliveryInformation findDeliveryInformationByProductId(int id){
         return deliveryInformationRepository.findById(id)

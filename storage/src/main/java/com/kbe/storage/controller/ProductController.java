@@ -3,6 +3,7 @@ package com.kbe.storage.controller;
 import com.kbe.storage.models.entities.Product;
 import com.kbe.storage.services.CsvImportService;
 import com.kbe.storage.services.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/csv/")
+@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
-
-    public ProductController(ProductService productService){
-        this.productService = productService;
-    }
 
     @GetMapping("products")
     public ResponseEntity<List<Product>> getProducts(){

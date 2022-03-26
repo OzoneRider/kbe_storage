@@ -2,6 +2,7 @@ package com.kbe.storage.services;
 
 import com.kbe.storage.models.entities.Product;
 import com.kbe.storage.repositories.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +22,12 @@ import java.util.List;
 
 @Service
 @CommonsLog
+@RequiredArgsConstructor
 public class CsvImportService {
 
     private final ProductRepository productRepository;
 
     private final String CSV_FILENAME = "products.csv";
-
-    public CsvImportService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     public ResponseEntity<List<Product>> readCsvFromFolder() {
         String path = System.getProperty("java.io.tmpdir");

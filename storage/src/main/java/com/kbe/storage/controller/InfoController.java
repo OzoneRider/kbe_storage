@@ -3,21 +3,18 @@ package com.kbe.storage.controller;
 import com.kbe.storage.models.aplicationAPI.DeliveryInfoModel;
 import com.kbe.storage.models.entities.DeliveryInformation;
 import com.kbe.storage.services.DeliveryInformationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
 @RestController
 @RequestMapping("/api/")
+@RequiredArgsConstructor
 public class InfoController {
 
 
     private final DeliveryInformationService infoService;
-
-    public InfoController(DeliveryInformationService infoService){
-        this.infoService = infoService;
-    }
-
 
     @GetMapping("delivery-information/{id}")
     public DeliveryInfoModel getDeliveryInformation(@PathVariable("id") Integer id){
