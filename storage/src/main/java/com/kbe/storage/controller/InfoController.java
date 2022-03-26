@@ -15,25 +15,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
-public class StorageController {
+@RequestMapping("/api/")
+public class InfoController {
 
-    @Autowired
-    CsvImportService csvImportService;
     @Autowired
     DeliveryInformationService infoService;
-    @Autowired
-    ProductService productService;
 
-    @GetMapping("products/import")
-    public ResponseEntity<List<Product>> importProducts(){
-            return csvImportService.readCsvFromFolder();
-    }
-
-    @GetMapping("products")
-    public ResponseEntity<List<Product>> getProducts(){
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
-    }
 
     @GetMapping("delivery-information/{id}")
     public DeliveryInfoModel getDeliveryInformation(@PathVariable("id") Integer id){
@@ -48,11 +35,10 @@ public class StorageController {
                 infoService.convertModelToEntity(info)));
     }
 
-    @PutMapping("delivery-information/{id}")
-    public DeliveryInfoModel updateDeliveryInformation(@Valid @RequestBody DeliveryInformation deliveryInformation,
-                                                         @PathVariable("id") Integer id){
+    @PutMapping("delivery-information")
+    public DeliveryInfoModel updateDeliveryInformation(@Valid @RequestBody DeliveryInformation deliveryInformation){
         return infoService.convertEntityToModel(
-                infoService.updateDeliveryInformation(id, deliveryInformation));
+                infoService.updateDeliveryInformation(deliveryInformation));
     }
 
 }

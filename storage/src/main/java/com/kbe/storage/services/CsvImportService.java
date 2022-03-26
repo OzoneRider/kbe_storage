@@ -53,7 +53,7 @@ public class CsvImportService {
     private CellProcessor[] getProcessors(){
 
         final CellProcessor[] processors = new CellProcessor[]{
-                new NotNull(new ParseInt()), // productId
+                new NotNull(new ParseInt()), // id
                 new NotNull(), // name
                 new NotNull(new ParseBigDecimal()), // priceEuro
                 new NotNull(), // manufacturer

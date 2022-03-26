@@ -8,8 +8,6 @@ import com.kbe.storage.repositories.DeliveryInformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class DeliveryInformationService {
 
@@ -23,20 +21,21 @@ public class DeliveryInformationService {
 
     public DeliveryInformation saveDeliveryInformation(DeliveryInformation info){
         if(deliveryInformationRepository.save(info) == null)
-            throw new DataNotFoundException(info.getProductId());
+            throw new DataNotFoundException(info.getId());
         return info;
     }
 
-    public DeliveryInformation updateDeliveryInformation(int id, DeliveryInformation info){
-        DeliveryInformation newInfo = deliveryInformationRepository.findById(id)
-                .orElseThrow(() -> new DataNotFoundException(id));
-        info.setAmount(info.getAmount());
-        info.setDeliveryTimeDays(info.getDeliveryTimeDays());
+    public DeliveryInformation updateDeliveryInformation(DeliveryInformation info){
+        DeliveryInformation temp = deliveryInformationRepository.findById(info.getId())
+                .orElseThrow(() -> new DataNotFoundException(info.getId()));
 
-        return deliveryInformationRepository.save(newInfo);
+        return deliveryInformationRepository.save(info);
     }
 
     public DeliveryInformation convertModelToEntity(DeliveryInfoModel infoModel){
+
+        if(infoModel == null)
+            return null;
 
         return new DeliveryInformation(infoModel.getProductId(), infoModel.getDeliveryTimeDays(), infoModel.getAmount(),
                 infoModel.getProductLocation().getCountry(), infoModel.getProductLocation().getCity(),
@@ -49,7 +48,7 @@ public class DeliveryInformationService {
         if(info == null)
             return null;
 
-        return new DeliveryInfoModel(info.getProductId(), info.getDeliveryTimeDays(), info.getAmount(),
+        return new DeliveryInfoModel(info.getId(), info.getDeliveryTimeDays(), info.getAmount(),
                 new Location(info.getCountry(), info.getCity(), info.getStreet(), info.getHomeNr(), info.getPostalCode()));
     }
 

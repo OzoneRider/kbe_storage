@@ -20,7 +20,7 @@ public class Product {
     @Id
     @Column(name = "PRODUCT_ID")
     @Min(0)
-    private int productId;
+    private int id;
 
     @Column(name = "NAME")
     @NotNull

@@ -1,10 +1,5 @@
 package com.kbe.storage.models.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +8,7 @@ public class DeliveryInformation {
 
     @Id
     @Column(name = "PRODUCT_ID")
-    private int productId;
+    private int id;
     @Column(name = "DELIVERY_TIME")
     private int deliveryTimeDays;
     @Column(name = "AMOUNT")
@@ -32,8 +27,8 @@ public class DeliveryInformation {
     public DeliveryInformation() {
     }
 
-    public DeliveryInformation(int productId, int deliveryTimeDays, int amount, String country, String city, String street, String homeNr, String postalCode) {
-        this.productId = productId;
+    public DeliveryInformation(int id, int deliveryTimeDays, int amount, String country, String city, String street, String homeNr, String postalCode) {
+        this.id = id;
         this.deliveryTimeDays = deliveryTimeDays;
         this.amount = amount;
         this.country = country;
@@ -43,12 +38,12 @@ public class DeliveryInformation {
         this.postalCode = postalCode;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDeliveryTimeDays() {
