@@ -14,7 +14,7 @@ public class DeliveryInformationService {
 
     private final DeliveryInformationRepository deliveryInformationRepository;
 
-    public  DeliveryInformation findDeliveryInformationByProductId(int id){
+    public  DeliveryInformation findDeliveryInformationById(int id){
         return deliveryInformationRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException(id));
     }
@@ -30,6 +30,10 @@ public class DeliveryInformationService {
                 .orElseThrow(() -> new DataNotFoundException(info.getId()));
 
         return deliveryInformationRepository.save(info);
+    }
+
+    public void deleteDeliveryInformation(int id){
+        deliveryInformationRepository.deleteById(id);
     }
 
     public DeliveryInformation convertModelToEntity(DeliveryInfoModel infoModel){

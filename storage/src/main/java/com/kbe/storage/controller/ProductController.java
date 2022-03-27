@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/csv/")
+@RequestMapping("/data/")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -30,4 +30,5 @@ public class ProductController {
     public ResponseEntity<Product> findProductById(@PathVariable("id") Integer id){
         return new ResponseEntity<>(productService.findProductById(id), HttpStatus.OK);
     }
+
 }

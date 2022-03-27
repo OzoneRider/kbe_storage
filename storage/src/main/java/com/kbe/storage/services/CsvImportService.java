@@ -27,11 +27,9 @@ public class CsvImportService {
 
     private final ProductRepository productRepository;
 
-    private final String CSV_FILENAME = "products.csv";
-
-    public ResponseEntity<List<Product>> readCsvFromFolder() {
+    public ResponseEntity<List<Product>> readCsvFromFolder(String fileName) {
         String path = System.getProperty("java.io.tmpdir");
-        File file = new File(path, CSV_FILENAME);
+        File file = new File(path, fileName);
 
         try{
             ICsvBeanReader beanReader = new CsvBeanReader(new FileReader(file), CsvPreference.STANDARD_PREFERENCE);

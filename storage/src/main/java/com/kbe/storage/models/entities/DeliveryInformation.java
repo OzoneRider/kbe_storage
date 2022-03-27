@@ -101,4 +101,57 @@ public class DeliveryInformation {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
+
+    @Override
+    public final boolean equals(Object o){
+
+        if(o == this)
+            return true;
+        if(!(o instanceof DeliveryInformation))
+            return false;
+        DeliveryInformation deliveryInformation = (DeliveryInformation) o;
+
+        boolean deliveryTimeEquals = this.deliveryTimeDays == deliveryInformation.deliveryTimeDays;
+        boolean amountEquals = this.amount == deliveryInformation.amount;
+        boolean countryEquals = (this.country == null && deliveryInformation.country == null)
+                || (this.country != null && this.country.equals(deliveryInformation.country));
+        boolean cityEquals = (this.city == null && deliveryInformation.city == null)
+                || (this.city != null && this.city.equals(deliveryInformation.city));
+        boolean streetEquals = (this.street == null && deliveryInformation.street == null)
+                || (this.street != null && this.street.equals(deliveryInformation.street));
+        boolean homeNrEquals = (this.homeNr == null && deliveryInformation.homeNr == null)
+                || (this.homeNr != null && this.homeNr.equals(deliveryInformation.homeNr));
+        boolean postalCodeEquals = (this.postalCode == null && deliveryInformation.postalCode == null)
+                || (this.postalCode != null && this.postalCode.equals(deliveryInformation.postalCode));
+
+        return deliveryTimeEquals && amountEquals && countryEquals && cityEquals &&
+                streetEquals && homeNrEquals && postalCodeEquals;
+    }
+
+    public final int hashCode(){
+        int result = 17;
+        if(deliveryTimeDays > 0){
+            result = 31 * result + deliveryTimeDays;
+        }
+        if(amount >= 0){
+            result = 31 * result + amount;
+        }
+        if(country != null){
+            result = 31 * result + country.hashCode();
+        }
+        if(city != null){
+            result = 31 * result + city.hashCode();
+        }
+        if(street != null){
+            result = 31 * result + street.hashCode();
+        }
+        if(homeNr != null){
+            result = 31 * result + homeNr.hashCode();
+        }
+        if(postalCode != null){
+            result = 31 * result + postalCode.hashCode();
+        }
+
+        return result;
+    }
 }

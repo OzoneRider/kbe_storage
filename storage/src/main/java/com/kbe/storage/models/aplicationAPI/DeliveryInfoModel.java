@@ -30,4 +30,35 @@ public class DeliveryInfoModel {
     @NotNull
     private Location productLocation;
 
+    @Override
+    public final boolean equals(Object o){
+
+        if(o == this)
+            return true;
+        if(!(o instanceof DeliveryInfoModel))
+            return false;
+        DeliveryInfoModel infoModel = (DeliveryInfoModel) o;
+
+        boolean locationEquals = (this.productLocation == null && infoModel.productLocation == null)
+                || (this.productLocation != null && this.productLocation.equals(infoModel.productLocation));
+        boolean deliveryTimeEquals = this.deliveryTimeDays == infoModel.deliveryTimeDays;
+        boolean amountEquals = this.amount == infoModel.amount;
+
+        return locationEquals && deliveryTimeEquals && amountEquals;
+    }
+
+    public final int hashCode(){
+        int result = 17;
+        if(productLocation != null){
+            result = 31 * result + productLocation.hashCode();
+        }
+        if(deliveryTimeDays > 0){
+            result = 31 * result + deliveryTimeDays;
+        }
+        if(amount >= 0){
+            result = 31 * result + amount;
+        }
+
+        return result;
+    }
 }

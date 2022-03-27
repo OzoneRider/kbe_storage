@@ -20,6 +20,6 @@ public class CsvController {
 
     @GetMapping("products/import")
     public ResponseEntity<List<Product>> importFromCSV(){
-        return csvImportService.readCsvFromFolder();
+        return csvImportService.readCsvFromFolder("products.csv");
     }
 }

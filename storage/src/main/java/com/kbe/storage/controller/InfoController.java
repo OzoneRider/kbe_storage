@@ -19,7 +19,7 @@ public class InfoController {
     @GetMapping("delivery-information/{id}")
     public DeliveryInfoModel getDeliveryInformation(@PathVariable("id") Integer id){
         return infoService.convertEntityToModel(
-                infoService.findDeliveryInformationByProductId(id));
+                infoService.findDeliveryInformationById(id));
     }
 
     @PostMapping("delivery-information")
