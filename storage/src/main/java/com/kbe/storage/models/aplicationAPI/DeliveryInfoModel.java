@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public class DeliveryInfoModel {
 
     @Min(0)
-    private int productId;
+    private int id;
 
     @Min(1)
     @Max(100)

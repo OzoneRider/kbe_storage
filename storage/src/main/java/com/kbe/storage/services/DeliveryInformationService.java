@@ -41,7 +41,7 @@ public class DeliveryInformationService {
         if(infoModel == null)
             return null;
 
-        return new DeliveryInformation(infoModel.getProductId(), infoModel.getDeliveryTimeDays(), infoModel.getAmount(),
+        return new DeliveryInformation(infoModel.getId(), infoModel.getDeliveryTimeDays(), infoModel.getAmount(),
                 infoModel.getProductLocation().getCountry(), infoModel.getProductLocation().getCity(),
                 infoModel.getProductLocation().getStreet(), infoModel.getProductLocation().getHomeNr(),
                 infoModel.getProductLocation().getPostalCode());
